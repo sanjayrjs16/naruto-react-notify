@@ -2,11 +2,47 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { useNotification } from "../context/NotificationContext";
+import { useNotification } from "./hooks/useNotification";
 
 function App() {
-  const [count, setCount] = useState(0);
   const { showNotification } = useNotification();
+  const handleShowNotification = (type, position) => {
+    let title, message;
+    switch (type) {
+      case "success": {
+        title = "Success!";
+        message = "Guy is proud!";
+        break;
+      }
+      case "error": {
+        title = "Error!";
+        message = "Know pain";
+        break;
+      }
+      case "info": {
+        title = "Info:";
+        message = "It's a 106cm";
+        break;
+      }
+      case "warning": {
+        title = "Warning";
+        message = "Orochimaru is here";
+        break;
+      }
+      default: {
+        title = "Success!";
+        message = "Your data is saved!";
+        break;
+      }
+    }
+    showNotification({
+      type,
+      title,
+      message,
+      position,
+      duration: 2000,
+    });
+  };
   return (
     <div className="App">
       <div>
@@ -17,19 +53,72 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Building a Notification system for your react app</h1>
       <div className="card">
         <button
           onClick={() => {
-            setCount((count) => count + 1);
-            showNotification({
-              title: "Hellow world",
-              text: "TExt shwon here is valid !",
-              position: "top",
-            });
+            handleShowNotification("success", "top-right");
           }}
         >
-          count is {count}
+          top-right
+        </button>
+        <button
+          onClick={() => {
+            handleShowNotification("warning", "top-left");
+          }}
+        >
+          top-left
+        </button>
+        <button
+          onClick={() => {
+            handleShowNotification("error", "bottom-left");
+          }}
+        >
+          bottom-left
+        </button>
+        <button
+          onClick={() => {
+            handleShowNotification("info", "bottom-right");
+          }}
+        >
+          bottom-right
+        </button>
+      </div>
+      <div className="card">
+        <button
+          onClick={() => {
+            handleShowNotification("info", "center");
+          }}
+        >
+          center
+        </button>
+        <button
+          onClick={() => {
+            handleShowNotification("success", "right");
+          }}
+        >
+          right
+        </button>
+        <button
+          onClick={() => {
+            handleShowNotification("error", "bottom");
+          }}
+        >
+          bottom
+        </button>
+        <button
+          onClick={() => {
+            handleShowNotification("warning", "top");
+          }}
+        >
+          top
+        </button>
+        <button
+          onClick={() => {
+            handleShowNotification("info", "left");
+          }}
+        >
+          left
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
