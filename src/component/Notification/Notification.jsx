@@ -50,42 +50,43 @@ const Notification = ({ notification, removeNotification }) => {
 
   return (
     <>
-      <div
-        ref={dimensionRef}
-        className={`${styles.notification} ${styles[type]}`}
-        style={{ visibility: isLeaving ? "hidden" : "visible" }}
-      >
-        <img
-          src={imageSrc}
-          alt={type}
-          className={styles.image}
-          width={150}
-          height={150}
-        />
-        <div className={styles.content}>
-          {title && <h3 className={styles.title}>{title}</h3>}
-          <p className={styles.message}>{message}</p>
-        </div>
-        <button
-          className={styles.closeBtn}
-          onClick={() => {
-            setCacheBuster(Date.now());
-            setSmokeVisible(true);
-            setTimeout(() => removeNotification(id), 600);
-          }}
+      <div style={{ position: "relative" }}>
+        <div
+          className={`${styles.notification} ${styles[type]}`}
+          ref={dimensionRef}
+          style={{ visibility: isLeaving ? "hidden" : "visible" }}
         >
-          X
-        </button>
+          <img
+            src={imageSrc}
+            alt={type}
+            className={styles.image}
+            width={150}
+            height={150}
+          />
+          <div className={styles.content}>
+            {title && <h3 className={styles.title}>{title}</h3>}
+            <p className={styles.message}>{message}</p>
+          </div>
+          <button
+            className={styles.closeBtn}
+            onClick={() => {
+              setCacheBuster(Date.now());
+              setSmokeVisible(true);
+              setTimeout(() => removeNotification(id), 600);
+            }}
+          >
+            X
+          </button>
+        </div>
+        {isSmokeVisible && (
+          <img
+            src={`./smoke.webp?${cacheBuster}`} // Append cacheBuster
+            alt="smoke"
+            width={contentWidth}
+            className={` ${styles.smoke}`}
+          />
+        )}
       </div>
-
-      {isSmokeVisible && (
-        <img
-          src={`./smoke.webp?${cacheBuster}`} // Append cacheBuster
-          alt="smoke"
-          width={contentWidth}
-          className={` ${styles.smoke}`}
-        />
-      )}
     </>
   );
 };

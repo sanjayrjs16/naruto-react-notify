@@ -40,7 +40,7 @@ function App() {
       title,
       message,
       position,
-      duration: 2000,
+      duration: 1500,
     });
   };
   return (
@@ -53,7 +53,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Building a Notification system for your react app</h1>
+      <h1>Building a Shadow Clone Notification system for your react app</h1>
       <div className="card">
         <button
           onClick={() => {
