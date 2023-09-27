@@ -1,13 +1,15 @@
 import { useState } from "react";
 import "./App.css";
+import { useNotification } from "./hooks/useNotification";
 
 function App() {
+  const { showNotification } = useNotification();
   const handleShowNotification = (type, position) => {
     let title, message;
     switch (type) {
       case "success": {
-        title = "Success!";
-        message = "Guy is proud!";
+        title = "Success! Success! Success!";
+        message = "Guy is proud! Guy is proud Guy is proud";
         break;
       }
       case "error": {
@@ -31,6 +33,7 @@ function App() {
         break;
       }
     }
+    showNotification({ title, message, type, position, duration: 1500 });
   };
 
   return (
@@ -39,7 +42,7 @@ function App() {
       <div className="card">
         <button
           onClick={() => {
-            handleShowNotification("success", "p");
+            handleShowNotification("success", "top-right");
           }}
         >
           top-right

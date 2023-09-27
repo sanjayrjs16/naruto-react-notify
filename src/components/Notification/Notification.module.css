@@ -1,0 +1,102 @@
+/* Positions */
+.top-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.top-right {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+.bottom-left {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.bottom-right {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+.top {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.left {
+  position: fixed;
+  bottom: 50%;
+  left: 0;
+  transform: translateY(50%);
+}
+.right {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+.center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  margin: 2px;
+  padding: 10px;
+  position: relative;
+}
+.content {
+  padding-left: 10px;
+}
+.image {
+  border-radius: 20%;
+}
+.title {
+  font-size: 1.5rem;
+}
+.message {
+  font-size: 1.2rem;
+}
+
+/* types */
+
+.success {
+  background-color: rgb(165, 230, 166);
+}
+
+.error {
+  background-color: rgb(243, 146, 146);
+}
+
+.info {
+  background-color: rgb(163, 214, 244);
+}
+
+.warning {
+  background-color: rgb(246, 246, 166);
+}
+.closeBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+}
+.smoke {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
