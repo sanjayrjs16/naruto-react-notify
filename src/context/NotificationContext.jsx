@@ -1,54 +1,25 @@
-import React, { createContext, useCallback, useContext, useState } from "react";
-import NotificationContainer from "../component/Notification/NotificationContainer";
+import React, { createContext, useState } from "react";
 
-export const NotificationContext = createContext();
-
-export const NotificationProvider = ({ children }) => {
+const NotificationContext = createContext({});
+const NotificationProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
 
-  const addNotification = (newNotification) => {
-    setNotifications((prevNotifications) => [
-      ...prevNotifications,
-      newNotification,
+  const addNotification = (notification) => {
+    setNotifications((prevNotificaitons) => [
+      ...prevNotificaitons,
+      notification,
     ]);
   };
-
   const removeNotification = (id) => {
     setNotifications((prevNotifications) =>
-      prevNotifications.filter((notification) => notification.id !== id)
+      prevNotifications.filter((notification) => notification.id != id)
     );
   };
-
   return (
-    <NotificationContext.Provider
-      value={{
-        addNotification,
-        removeNotification,
-        notifications,
-        setNotifications,
-      }}
-    >
+    <NotificationContext.Provider value={{}}>
       {children}
-      {[
-        "top-left",
-        "top-right",
-        "bottom-left",
-        "bottom-right",
-        "top",
-        "bottom",
-        "center",
-        "right",
-        "left",
-      ].map((position) => {
-        return (
-          <NotificationContainer
-            key={position}
-            notifications={notifications.filter((n) => n.position === position)}
-            removeNotification={removeNotification}
-            position={position}
-          />
-        );
-      })}
     </NotificationContext.Provider>
   );
 };
+
+export default NotificationProvider;
