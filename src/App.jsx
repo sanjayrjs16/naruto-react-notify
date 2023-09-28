@@ -1,6 +1,4 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { useNotification } from "./hooks/useNotification";
 
@@ -10,8 +8,8 @@ function App() {
     let title, message;
     switch (type) {
       case "success": {
-        title = "Success!";
-        message = "Guy is proud!";
+        title = "Success! Success! Success!";
+        message = "Guy is proud! Guy is proud Guy is proud";
         break;
       }
       case "error": {
@@ -35,24 +33,11 @@ function App() {
         break;
       }
     }
-    showNotification({
-      type,
-      title,
-      message,
-      position,
-      duration: 1500,
-    });
+    showNotification({ title, message, type, position, duration: 1500 });
   };
+
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
       <h1>Building a Shadow Clone Notification system for your react app</h1>
       <div className="card">
         <button
@@ -120,13 +105,7 @@ function App() {
         >
           left
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   );
 }

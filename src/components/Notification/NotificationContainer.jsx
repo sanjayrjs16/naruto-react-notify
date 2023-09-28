@@ -1,11 +1,10 @@
 import React from "react";
 import Notification from "./Notification";
 import styles from "./Notification.module.css";
-
 const NotificationContainer = ({
+  position,
   notifications,
   removeNotification,
-  position,
 }) => {
   return (
     <div className={styles[position]}>

@@ -1,6 +1,6 @@
-import { useContext, useEffect, useCallback } from "react";
+import { useState, useCallback, useContext } from "react";
 import { NotificationContext } from "../context/NotificationContext";
-
+import { v4 as uuidv4 } from "uuid";
 export const useNotification = () => {
   const {
     addNotification,
@@ -8,41 +8,28 @@ export const useNotification = () => {
     notifications,
     setNotifications,
   } = useContext(NotificationContext);
-
   const prepareToRemoveNotification = (id) => {
     setNotifications((prevNotifications) =>
-      prevNotifications.map((notification) =>
-        notification.id === id
-          ? { ...notification, isLeaving: true }
-          : notification
+      prevNotifications.map((notif) =>
+        notif.id === id ? { ...notif, isLeaving: true } : notif
       )
     );
 
-    // Remove the notification after the exit animation has had time to complete
     setTimeout(() => {
       removeNotification(id);
-    }, 400); // This should match the duration of your smoke animation
+    }, 400);
   };
-
   const showNotification = useCallback((options) => {
-    const id = Date.now();
-    const { type, title, message, image, position, duration = 5000 } = options;
-
+    const id = uuidv4();
+    const { type, title, message, duration = 2000 } = options;
     const timer = setTimeout(() => {
       prepareToRemoveNotification(id);
     }, duration);
-
     addNotification({
+      ...options,
       id,
-      type,
-      title,
-      message,
-      image,
-      position,
-      timer,
       isLeaving: false,
     });
   }, []);
-
   return { showNotification };
 };

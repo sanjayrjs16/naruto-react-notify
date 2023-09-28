@@ -1,30 +1,27 @@
-import React, { createContext, useCallback, useContext, useState } from "react";
-import NotificationContainer from "../component/Notification/NotificationContainer";
+import React, { createContext, useState } from "react";
+import NotificationContainer from "../components/Notification/NotificationContainer";
+export const NotificationContext = createContext({});
 
-export const NotificationContext = createContext();
-
-export const NotificationProvider = ({ children }) => {
+const NotificationProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
 
-  const addNotification = (newNotification) => {
-    setNotifications((prevNotifications) => [
-      ...prevNotifications,
-      newNotification,
+  const addNotification = (notification) => {
+    setNotifications((prevNotificaitons) => [
+      ...prevNotificaitons,
+      notification,
     ]);
   };
-
   const removeNotification = (id) => {
     setNotifications((prevNotifications) =>
-      prevNotifications.filter((notification) => notification.id !== id)
+      prevNotifications.filter((notification) => notification.id != id)
     );
   };
-
   return (
     <NotificationContext.Provider
       value={{
+        notifications,
         addNotification,
         removeNotification,
-        notifications,
         setNotifications,
       }}
     >
@@ -32,23 +29,25 @@ export const NotificationProvider = ({ children }) => {
       {[
         "top-left",
         "top-right",
-        "bottom-left",
         "bottom-right",
+        "bottom-left",
+        "left",
+        "right",
+        "center",
         "top",
         "bottom",
-        "center",
-        "right",
-        "left",
-      ].map((position) => {
-        return (
-          <NotificationContainer
-            key={position}
-            notifications={notifications.filter((n) => n.position === position)}
-            removeNotification={removeNotification}
-            position={position}
-          />
-        );
-      })}
+      ].map((position) => (
+        <NotificationContainer
+          key={position}
+          notifications={notifications.filter(
+            (notification) => notification.position === position
+          )}
+          position={position}
+          removeNotification={removeNotification}
+        />
+      ))}
     </NotificationContext.Provider>
   );
 };
+
+export default NotificationProvider;

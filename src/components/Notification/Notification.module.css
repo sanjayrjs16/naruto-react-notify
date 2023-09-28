@@ -1,12 +1,3 @@
-/* Global Notification Styles */
-.notification {
-  border-radius: 4px;
-  padding: 16px;
-  margin: 8px;
-  display: flex;
-  align-items: center;
-}
-
 /* Positions */
 .top-left {
   position: fixed;
@@ -59,42 +50,43 @@
   transform: translate(-50%, -50%);
 }
 
-/* Types */
-.success {
-  background-color: #dff2bf;
+.notification {
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  margin: 2px;
+  padding: 10px;
+  position: relative;
 }
-.error {
-  background-color: #ed8181;
-}
-.warning {
-  background-color: #fef3b5;
-}
-.info {
-  background-color: #c2e4fc;
-}
-
-/* Smoke Animation */
-.smoke {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  /* animation: fadeInOut 1s ease-in-out; */
-}
-
-.image {
-  border-radius: 25%;
-}
-
 .content {
   padding-left: 10px;
 }
-
+.image {
+  border-radius: 20%;
+}
 .title {
   font-size: 1.5rem;
 }
-
 .message {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+}
+
+/* types */
+
+.success {
+  background-color: rgb(165, 230, 166);
+}
+
+.error {
+  background-color: rgb(243, 146, 146);
+}
+
+.info {
+  background-color: rgb(163, 214, 244);
+}
+
+.warning {
+  background-color: rgb(246, 246, 166);
 }
 .closeBtn {
   position: absolute;
@@ -102,14 +94,9 @@
   right: 0;
   background: none;
 }
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+.smoke {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
